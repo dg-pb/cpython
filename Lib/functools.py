@@ -462,6 +462,9 @@ class partialmethod:
                                 "or a descriptor")
             if args and args[-1] is Placeholder:
                 raise TypeError("trailing Placeholders are not allowed")
+            for value in keywords.values():
+                if value is Placeholder:
+                    raise TypeError("Placeholder cannot be passed as a keyword argument")
 
         self.func = func
         self.args = args
